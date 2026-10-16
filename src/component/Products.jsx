@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useAuth, useClerk } from "@clerk/clerk-react";
+import Navbar from "./Navbar.jsx";
 import {
   Alert,
   Badge,
@@ -395,7 +396,15 @@ export default function ProductStore() {
   };
 
   return (
-    <Container maxW="7xl" py="8">
+    <>
+      <Navbar
+        searchValue={input}
+        onSearchChange={(event) => setInput(event.target.value)}
+        onSearchSubmit={handleSubmit}
+        onCartClick={() => setCartOpen(true)}
+        cartItemCount={cart.itemCount}
+      />
+      <Container maxW="7xl" py="8">
       <Flex justify="space-between" align="flex-start" gap="4" mb="6">
         <Box>
           <Heading size="3xl">{query ? `Results for "${query}"` : "Shop all products"}</Heading>
@@ -508,6 +517,7 @@ export default function ProductStore() {
         cart={cart}
         onCheckout={handleCheckout}
       />
-    </Container>
+      </Container>
+    </>
   );
 }
