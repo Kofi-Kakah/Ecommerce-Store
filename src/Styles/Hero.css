@@ -5,3 +5,12 @@
     height: 550px;
     width: 100%;
 }
+
+@media (max-width: 767px) {
+    .body {
+        height: auto;
+        min-height: 620px;
+        padding-bottom: 2rem;
+        background-position: 60% center;
+    }
+}

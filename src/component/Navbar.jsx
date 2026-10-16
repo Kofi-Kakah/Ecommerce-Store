@@ -8,9 +8,9 @@ import Search from "./Search.jsx"
 
 export default function Navbar ({ searchValue, onSearchChange, onSearchSubmit, onCartClick, cartItemCount }) {
     return (
-        <Box as="nav" bg="bg" borderBottomWidth="1px" px="6" py="3" position="fixed" top="0" right="0" left="0" zIndex={1000}>
-            <Flex align="center" justify="space-between" maxW="6xl" mx="auto">
-                <Heading size="lg" whiteSpace="nowrap" display="flex" alignItems="center" gap="2">
+        <Box as="nav" bg="bg" borderBottomWidth="1px" px={{ base: "3", md: "6" }} py={{ base: "2", md: "3" }} position="fixed" top="0" right="0" left="0" zIndex={1000}>
+            <Flex align="center" justify="space-between" maxW="6xl" mx="auto" gap={{ base: "2", md: "4" }} flexWrap="wrap">
+                <Heading fontSize={{ base: "md", sm: "lg" }} whiteSpace="nowrap" display="flex" alignItems="center" gap="2">
                     <ImCart/>
                     <Span>
                         <Span fontWeight="extrabold">Stop</Span>
@@ -21,9 +21,9 @@ export default function Navbar ({ searchValue, onSearchChange, onSearchSubmit, o
 
                 <Search value={searchValue} onChange={onSearchChange} onSubmit={onSearchSubmit}/>
 
-                <HStack gap="6">
-                    <Link href="/">Home</Link>
-                    <Link href="../pages/Product.jsx">Product</Link>
+                <HStack gap={{ base: "1", md: "6" }} order={{ base: "2", md: "3" }} flex={{ base: "1 1 auto", md: "initial" }} justify={{ base: "flex-end", md: "initial" }} flexWrap="wrap" minW="0">
+                    <Link href="/" fontSize={{ base: "xs", sm: "sm" }}>Home</Link>
+                    <Link href="../pages/Product.jsx" fontSize={{ base: "xs", sm: "sm" }}>Product</Link>
                     <Button variant="ghost" size="sm" onClick={onCartClick} aria-label={`Open cart, ${cartItemCount} items`}>
                         <GrCart/>Cart
                         {cartItemCount > 0 && <Badge colorPalette="blue">{cartItemCount}</Badge>}

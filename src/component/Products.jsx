@@ -100,11 +100,11 @@ function CartRow({ item, onQuantityChange, onRemove }) {
   const atMax = item.quantity >= item.stock;
 
   return (
-    <Flex gap="3" py="4" borderBottomWidth="1px">
+    <Flex gap={{ base: "2", sm: "3" }} py="4" borderBottomWidth="1px">
       <Image
         src={item.thumbnail}
         alt={item.title}
-        boxSize="20"
+        boxSize={{ base: "16", sm: "20" }}
         objectFit="cover"
         rounded="md"
         bg="bg.muted"
@@ -148,8 +148,8 @@ function CartRow({ item, onQuantityChange, onRemove }) {
         )}
       </Box>
 
-      <Flex direction="column" align="flex-end" justify="space-between">
-        <Text fontWeight="semibold">{formatPrice(item.price * item.quantity)}</Text>
+      <Flex direction="column" align="flex-end" justify="space-between" minW="0">
+        <Text fontWeight="semibold" fontSize={{ base: "sm", sm: "md" }}>{formatPrice(item.price * item.quantity)}</Text>
         <Button size="xs" variant="ghost" onClick={() => onRemove(item.id)}>
           Remove
         </Button>
@@ -264,8 +264,8 @@ function ProductCard({ product, quantityInCart, onAdd }) {
         </HStack>
       </Card.Body>
 
-      <Card.Footer justifyContent="space-between" alignItems="center">
-        <Box>
+      <Card.Footer justifyContent="space-between" alignItems="center" gap="2" flexWrap="wrap">
+        <Box minW="0" flex="1">
           <HStack gap="2" align="baseline">
             <Text fontWeight="bold" fontSize="lg">
               {formatPrice(salePrice)}
@@ -282,6 +282,7 @@ function ProductCard({ product, quantityInCart, onAdd }) {
         </Box>
         <Button
           size="sm"
+          flexShrink="0"
           disabled={!inStock || maxedOut}
           onClick={() => onAdd(product)}
         >
@@ -403,10 +404,10 @@ export default function ProductStore() {
         onCartClick={() => setCartOpen(true)}
         cartItemCount={cart.itemCount}
       />
-      <Container maxW="7xl" py="8">
-      <Flex justify="space-between" align="flex-start" gap="4" mb="6">
-        <Box>
-          <Heading size="3xl">{query ? `Results for "${query}"` : "Shop all products"}</Heading>
+      <Container maxW="7xl" py={{ base: "5", md: "8" }}>
+      <Flex justify="space-between" align={{ base: "stretch", sm: "flex-start" }} direction={{ base: "column", sm: "row" }} gap="4" mb="6">
+        <Box flex="1" minW="0">
+          <Heading fontSize={{ base: "2xl", sm: "3xl" }} wordBreak="break-word">{query ? `Results for "${query}"` : "Shop all products"}</Heading>
           <Text color="fg.muted" mt="1">
             {query ? "Products matching your search" : "Browse our latest catalog"}
           </Text>
@@ -414,6 +415,7 @@ export default function ProductStore() {
 
         <Button
           variant="outline"
+          w={{ base: "full", sm: "auto" }}
           onClick={() => setCartOpen(true)}
           aria-label={`Open cart, ${cart.itemCount} items`}
         >
@@ -428,12 +430,14 @@ export default function ProductStore() {
 
       {/* Search */}
       <form onSubmit={handleSubmit}>
-        <Flex gap="2" mb="6">
+        <Flex gap="2" mb="6" flexWrap="wrap" justify="flex-end">
           <Input
             aria-label="Search products"
             placeholder="Search products, e.g. phone, laptop, perfume"
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            flex={{ base: "1 1 100%", sm: "1" }}
+            minW="0"
           />
           {input && (
             <Button type="button" variant="outline" onClick={handleClear}>
