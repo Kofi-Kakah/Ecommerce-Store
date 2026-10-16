@@ -150,7 +150,7 @@ function CartRow({ item, onQuantityChange, onRemove }) {
 
       <Flex direction="column" align="flex-end" justify="space-between">
         <Text fontWeight="semibold">{formatPrice(item.price * item.quantity)}</Text>
-        <Button size="xs" variant="ghost" colorPalette="red" onClick={() => onRemove(item.id)}>
+        <Button size="xs" variant="ghost" onClick={() => onRemove(item.id)}>
           Remove
         </Button>
       </Flex>
@@ -205,7 +205,7 @@ function CartDrawer({ open, onOpenChange, cart, onCheckout }) {
                 <Text fontSize="xs" color="fg.muted">
                   Shipping and taxes are calculated at checkout.
                 </Text>
-                <Button colorPalette="blue" onClick={() => onCheckout(items, subtotal)}>
+                <Button onClick={() => onCheckout(items, subtotal)}>
                   Checkout
                 </Button>
                 <Button variant="outline" onClick={clearCart}>
@@ -282,7 +282,6 @@ function ProductCard({ product, quantityInCart, onAdd }) {
         </Box>
         <Button
           size="sm"
-          colorPalette="blue"
           disabled={!inStock || maxedOut}
           onClick={() => onAdd(product)}
         >
@@ -441,7 +440,7 @@ export default function ProductStore() {
               Clear
             </Button>
           )}
-          <Button type="submit" colorPalette="blue">
+          <Button type="submit">
             Search
           </Button>
         </Flex>
