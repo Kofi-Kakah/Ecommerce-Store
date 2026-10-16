@@ -22,8 +22,8 @@ export default function Navbar () {
                 <Search/>
 
                 <HStack gap="6">
-                    <Link href="#">Home</Link>
-                    <Link href="#">Product</Link>
+                    <Link href="/">Home</Link>
+                    <Link href="../pages/Product.jsx">Product</Link>
                     <Link href="#"><GrCart/>Cart</Link>
                     <SignedOut>
                         <SignInButton>
